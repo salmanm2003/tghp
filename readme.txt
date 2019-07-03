@@ -17,8 +17,6 @@ to login to the panel:
 username: root
 password: 123
 
-If any questions please contact me at:
-salmanm2003@hotmail.com
 
 
 

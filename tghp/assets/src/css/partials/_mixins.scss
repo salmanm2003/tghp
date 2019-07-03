@@ -1,0 +1,18 @@
+@mixin gutter($top, $right, $bottom, $left) {
+  	padding: $top $right $bottom $left;
+}
+
+@mixin grid($areas, $cols, $rows, $gap) {
+	display: grid;
+	grid-template-areas: $areas;
+	grid-template-columns: $cols;
+	grid-template-rows: $rows;
+	grid-gap: $gap;
+}
+
+@mixin direction($cstart, $cend, $rstart, $rend) {
+	grid-column-start: $cstart;
+	grid-column-end: $cend;
+	grid-row-start: $rstart;
+	grid-row-end: $rend;
+}

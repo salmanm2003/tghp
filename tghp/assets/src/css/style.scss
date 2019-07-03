@@ -1,0 +1,301 @@
+@import "partials/reset";
+@import "partials/variables";
+@import "partials/mixins";
+
+/*
+Theme Name: TGHP Tech Test
+Author: Salman Murad
+Version: 1.0
+*/
+
+body { 
+	background: #fff;
+	padding:0;
+	margin:0; 
+	font-size: $main-font-size;
+}
+
+h3 {
+	font-family: $font-base;
+    font-size: $title-size;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+
+.gap{
+	height: $gap;
+}
+
+.gutter {
+	@include gutter(0, 40px, 0, 40px);
+}
+
+.gray {
+	color: $gray;
+}
+
+.white {
+	color:#fff;
+}
+
+.main-container { 
+	@include grid("header" "content" "footer", 1fr, 100vh 1fr auto, 80px );
+	margin: 0;
+
+	#header {
+		grid-area: header;
+	}
+
+	#footer {
+		grid-area: footer;
+	}
+
+	#content { 
+		grid-area: content;    
+	}
+}
+
+.container {
+	max-width: 960px;
+	margin:0 auto;	
+}
+
+header {
+	position: relative;
+	min-height: 500px;
+	background-size: cover !important;
+	-webkit-background-size: cover !important;
+	text-align: center;
+	overflow: hidden;
+
+
+	video {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: -100;
+		min-width: 100%;
+		min-height: 100%;
+		width: auto;
+		height: auto;
+		-webkit-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
+
+	&:before {
+		content:"";
+		position: absolute;
+		top:0;
+		right:0;
+		left:0;
+		bottom:0;
+		z-index:1;
+		background:$bg-main;
+		opacity: 0.6;
+	}
+
+	.banner {
+		height: 100%;
+		width:100%;
+		position: relative;
+		z-index: 10;
+	}
+
+	.banner-logo {
+		padding: 15% 0;
+		vertical-align: middle;
+	}
+	
+	.banner-logo img{
+		width:20%;
+		min-width: 200px;
+	}
+}
+
+#content {
+	.content-item {		
+		@include grid("header" "content" "footer", repeat(4, 1fr), 500px, 0 );
+
+		.text {
+			background-color: $bg-main;
+			z-index: 10;
+			height: fit-content;
+			padding: 40px;
+			margin-top: 50px;
+			opacity: 0.8;
+			color: #fff;
+			
+			p {
+			 	font-weight: lighter;
+				font-size: $large-font-size;
+				font-family: $font-title;
+				margin:0;
+				line-height: 1;
+			}
+
+			&.right{
+				@include direction(3,5,1,1);
+				@media (max-width: 500px) {
+					@include direction(2,5,1,1);
+				}
+			}
+
+			&.left{
+				@include direction(1,3,1,1);
+				@media (max-width: 500px) {
+					@include direction(1,4,1,1);
+				}
+			}
+		}
+
+		.img {
+			background-size: cover !important;
+			&.right{
+				@include direction(2,5,1,1);
+				@media (max-width: 500px) {
+					@include direction(1,5,1,1);
+					margin-top:0;
+				}
+			}
+
+			&.left{
+				@include direction(1,4,1,1);
+				@media (max-width: 500px) {
+					@include direction(1,5,1,1);
+					margin-top:0;
+				}
+			}
+		}
+
+	}
+
+	.partners {
+		@include grid(none, repeat(5, 1fr), repeat(2, 50%), 0 );
+		height: 300px;
+		position: relative;
+		
+		div {
+			border: 1px solid #efefef;
+			padding: 10px 10px;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			vertical-align: middle;
+			text-align: center;
+		
+			img {
+				width: 100%;
+				max-width: 120px;
+			}
+		}
+
+		&:before {
+			content: ' ';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			border: 1px solid #fff;
+		}
+
+		@media (max-width: 500px) {
+			@include grid(none, repeat(2,1fr),  repeat(5,20%), 0 );
+    		height: auto;
+		}
+	}
+
+	#contact {
+		form {
+			@include grid(none, auto 1fr 1fr, none, 1em 0 );
+			padding:0;
+			grid-auto-flow: row dense;
+
+			input,
+			button {
+				@include direction(2,2,auto,auto);
+				padding: 1em;
+				border:1px solid $border-color;
+				@media (max-width: 500px) {
+					@include direction(1,1,auto,auto);
+				}
+			}
+
+			textarea {
+				min-height: calc(100% - 2em);
+				width: 100%;
+				height:100%;
+				padding: 1em;
+				border: 1px solid $border-color;
+				-moz-box-sizing: border-box; 
+			    -webkit-box-sizing: border-box; 
+			     box-sizing: border-box; 
+			}
+
+			#comment-box {
+				@include direction(3,3,span 3,span 3);
+				margin-left: 1em;
+				@media (max-width: 500px) {
+					@include direction(1,1,auto,auto);
+					margin-left: 0;
+				}
+			}
+
+			button {
+				@include direction(2,4,auto,auto);
+				background: $bg-main;
+				color:#fff;
+				@media (max-width: 500px) {
+					@include direction(1,1,5,5);
+				}
+			}
+
+			@media (max-width: 500px) {
+				@include grid(none, 1fr, repeat(4,1fr), 1em 0 );
+			}
+		}
+	}
+}
+
+footer {
+	background-color: $bg-main;
+	
+	.container {
+		@include grid("logo address tel" "copy copy copy", 1fr 3fr 3fr, 1fr 50px, 0 );
+
+		div {
+			padding: 40px 0px;
+			font-size: $main-font-size;
+			line-height: 20px;
+			font-family: $font-base;
+			font-weight: normal;
+			text-align: right;
+			color: #fff;
+
+			@media (max-width: 500px) {
+				text-align: left;
+				padding: 10px 0;
+			}
+
+		}
+
+		.footer-logo {
+			text-align:left;
+		}
+
+		.copy {
+			grid-area: copy;
+			text-align: left;
+			padding: 13px 0;
+			font-size: $small-font-size;
+			border-top: 1px solid #fff;
+		}
+
+		@media (max-width: 500px) {
+			@include grid("logo" "address" "tel" "copy", 1fr, 80px 60px 60px 50px, 0 );
+			text-align:center;
+		}
+	}
+}
